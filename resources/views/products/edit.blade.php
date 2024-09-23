@@ -64,5 +64,13 @@
         
             <button type="submit">Update Product</button>
         </form>
+
+        <form action="{{ route('products.destroy', $product->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <input type="submit" value="Cancella">
+
+        </form>
     </body>
 </html>

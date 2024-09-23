@@ -34,14 +34,16 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        // Get all the request data
         $data = $request->all();
-        $newProduct = new Product();
-        $newProduct->fill($data);
-        $newProduct->save();
 
+        // Create a new Product instance and fill it with the request data
+        $newProduct = Product::create($data);
 
-        $product = Product::with("categories")->where('id', $newProduct->id)->first();
+        // Optionally load related categories if you need them
+        $product = Product::with('categories')->find($newProduct->id);
 
+        // Return the newly created product as JSON
         return response()->json($product);
     }
 

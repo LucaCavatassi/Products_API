@@ -44,6 +44,11 @@
             <label for="price">Price</label>
             <input type="number" name="price" placeholder="Insert price for the product..." required>
 
+            <br>
+            
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" placeholder="Insert quantity for the product..." required>
+
             <button type="submit">Aggiungi</button>
         </form>
     </body>

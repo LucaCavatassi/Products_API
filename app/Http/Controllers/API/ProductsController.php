@@ -37,7 +37,7 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         // Get all the request data
-        $data = $request->except('categories');
+        $data = $request->all();
 
         // Create a new Product instance and fill it with the request data
         $newProduct = Product::create($data);
@@ -63,7 +63,10 @@ class ProductsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::with('categories')->findOrFail($id);
+        $categories = Category::all();
+
+        return view('products.edit', compact('product','categories'));
     }
 
     /**

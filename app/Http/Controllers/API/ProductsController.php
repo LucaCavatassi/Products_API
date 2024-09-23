@@ -74,7 +74,21 @@ class ProductsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the product by ID
+        $product = Product::findOrFail($id);
+
+        // Extract form data except
+        $data = $request->all();
+
+        // Update the product's attributes
+        $product->update($data);
+
+        // Sync the selected categories (replace current associations)
+        $product->categories()->sync($request->categories);
+
+
+        // Return the newly created product as JSON
+        return response()->json($product->load('categories'));
     }
 
     /**

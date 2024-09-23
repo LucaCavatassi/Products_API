@@ -39,7 +39,10 @@ class ProductsController extends Controller
         $newProduct->fill($data);
         $newProduct->save();
 
-        return response()->json($newProduct);
+
+        $product = Product::with("categories")->where('id', $newProduct->id)->first();
+
+        return response()->json($product);
     }
 
     /**

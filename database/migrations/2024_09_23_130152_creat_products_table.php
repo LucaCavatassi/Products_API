@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('price', 8, 2, true);
             $table->boolean('available');
             $table->integer('quantity', false, true);
-            $table->unsignedBigInteger('category_id');
         });
     }
 

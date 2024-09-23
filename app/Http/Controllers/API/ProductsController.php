@@ -26,7 +26,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        
+        return view('products.create');
     }
 
     /**
@@ -35,9 +35,11 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $product = new Product();
-        $product->fill($data);
-        $product->save();
+        $newProduct = new Product();
+        $newProduct->fill($data);
+        $newProduct->save();
+
+        return response()->json($newProduct);
     }
 
     /**

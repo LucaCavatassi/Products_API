@@ -15,9 +15,11 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i <= 100; $i++) {
-            $newProduct = new Category();
-            $newProduct->name = $faker->word(3, true);
+        for ($i = 0; $i < 30; $i++) {
+            $newCategory = new Category();
+            $newCategory->name = $faker->words(3, true);
+
+            $newCategory->save();
         }
     }
 }

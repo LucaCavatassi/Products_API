@@ -37,16 +37,16 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         // Get all the request data
-        $data = $request->all();
+        $data = $request->except('categories');
 
         // Create a new Product instance and fill it with the request data
         $newProduct = Product::create($data);
 
-        // Optionally load related categories if you need them
-        $product = Product::with('categories')->find($newProduct->id);
+        // Attach the selected categories to the product
+        $newProduct->categories()->attach($request->categories);
 
         // Return the newly created product as JSON
-        return response()->json($product);
+        return response()->json($newProduct->load('categories'));
     }
 
     /**

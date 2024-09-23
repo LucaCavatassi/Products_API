@@ -27,6 +27,16 @@
 
             <br>
 
+            <label for="price">Price</label>
+            <input type="number" name="price" placeholder="Insert price for the product..." required>
+
+            <br>
+
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" placeholder="Insert quantity for the product..." required>
+
+            <br>
+
             <fieldset>
                 <legend>Product available?</legend>
                 
@@ -41,14 +51,14 @@
                 </div>
             </fieldset>
 
-            <label for="price">Price</label>
-            <input type="number" name="price" placeholder="Insert price for the product..." required>
-
             <br>
-            
-            <label for="quantity">Quantity</label>
-            <input type="number" name="quantity" placeholder="Insert quantity for the product..." required>
 
+            <label for="categories">Select product categories</label>
+            <select name="categories[]" id="categories" multiple>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
             <button type="submit">Aggiungi</button>
         </form>
     </body>
